@@ -1,0 +1,611 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#070d1d">
+<meta name="description" content="DONIA — MASTERING CODE. تعلم HTML وCSS وJavaScript من الصفر. المستوى الأول 18 درسًا مع فيديوهات ومذكرات ومحرر أكواد واختبارات.">
+<title>DONIA — MASTERING CODE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+ --bg:#070d1d;--panel:#0d1931;--panel2:#102343;
+ --blue:#087cff;--cyan:#08dcff;--white:#f4f8ff;
+ --muted:#a8bad4;--line:#20395f;--green:#20c878;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:75px}
+body{
+ margin:0;font-family:'Cairo',sans-serif;font-size:13px;line-height:1.85;
+ color:var(--white);background:
+ radial-gradient(ellipse at 15% 5%,#0754a52b,transparent 34%),
+ radial-gradient(ellipse at 90% 48%,#087cff15,transparent 32%),var(--bg)
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+.container{width:min(1050px,92%);margin:auto}
+section{padding:48px 0;scroll-margin-top:72px}
+h1,h2,h3,p{margin-top:0}
+h1{font-size:clamp(27px,4.4vw,43px);line-height:1.5;margin-bottom:12px}
+h2{font-size:clamp(21px,3vw,29px);line-height:1.6;margin-bottom:7px}
+h3{font-size:16px;margin-bottom:7px}
+p{color:var(--muted)}
+.gradient{
+ background:linear-gradient(100deg,#fff,#08dcff,#6daaff);
+ -webkit-background-clip:text;background-clip:text;color:transparent
+}
+header{
+ position:sticky;top:0;z-index:50;background:#070d1df2;
+ backdrop-filter:blur(15px);border-bottom:1px solid var(--line)
+}
+.nav{min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{direction:ltr;white-space:nowrap;font-size:15px;font-weight:900}
+.logo span{color:var(--cyan)}
+.nav-links{display:flex;align-items:center;gap:15px;font-size:11px}
+.nav-links a:hover{color:var(--cyan)}
+.btn{
+ display:inline-flex;justify-content:center;align-items:center;gap:7px;
+ border:1px solid transparent;border-radius:10px;padding:10px 16px;
+ font-size:12px;font-weight:800;text-align:center;transition:.2s
+}
+.btn:hover{transform:translateY(-2px)}
+.primary{background:linear-gradient(110deg,var(--cyan),#72aaff);color:#031322;box-shadow:0 5px 22px #087cff35}
+.outline{border-color:#168dff;color:var(--cyan);background:#087cff0c}
+.whatsapp-btn{background:var(--green);color:#062316}
+.small{padding:7px 11px;font-size:11px}
+.hero{padding-top:34px;padding-bottom:32px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:35px}
+.eyebrow{
+ display:inline-block;color:var(--cyan);border:1px solid #08dcff40;
+ background:#08dcff0b;border-radius:30px;padding:4px 11px;font-size:11px
+}
+.hero-copy{font-size:13px;max-width:470px}
+.points{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0}
+.points span{padding:4px 9px;background:#0c1a32;border:1px solid var(--line);border-radius:7px;font-size:10px;color:#dceaff}
+.price-banner{
+ max-width:390px;margin:16px 0;padding:12px 15px;border:1px solid #08dcff75;
+ border-radius:13px;background:linear-gradient(120deg,#081a37,#0a315a);
+ display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px
+}
+.price-banner .label{width:100%;font-size:11px;color:#d5e9ff}
+.price-banner strong{font-size:30px;color:var(--cyan);line-height:1.4}
+.price-banner small{font-size:12px;color:white}
+.price-banner .detail{font-size:10px;color:#a9ddff}
+.hero-actions{display:flex;gap:9px;flex-wrap:wrap}
+.book-stage{
+ min-height:380px;display:flex;flex-direction:column;justify-content:center;
+ align-items:center;perspective:1100px;position:relative
+}
+.book-glow{position:absolute;width:240px;height:250px;border-radius:50%;background:#087cff40;filter:blur(65px)}
+.book{
+ width:235px;height:325px;position:relative;transform:rotateY(-17deg) rotateX(2deg);
+ transform-style:preserve-3d;transition:.4s;filter:drop-shadow(0 20px 23px #0009)
+}
+.book:hover{transform:rotateY(-5deg) translateY(-5px)}
+.cover{
+ position:absolute;inset:0;overflow:hidden;padding:20px 19px;
+ border:1px solid #51eaff;border-radius:4px 12px 12px 4px;
+ background:radial-gradient(ellipse at 75% 22%,#087cff85,transparent 47%),
+ linear-gradient(145deg,#0c3471,#07152e 60%,#020716);
+ box-shadow:inset 5px 0 12px #0007,inset -2px 0 0 #70eaff
+}
+.cover:before{
+ content:"";position:absolute;width:205px;height:205px;top:76px;left:15px;
+ border:1px solid #08dcff30;border-radius:50%
+}
+.cover:after{content:"";position:absolute;bottom:0;right:0;left:0;height:5px;background:linear-gradient(90deg,#087cff,#08dcff,#087cff)}
+.cover-code{position:relative;font-size:28px;font-weight:900;color:var(--cyan);direction:ltr}
+.cover-donia{position:relative;font-size:36px;font-weight:900;line-height:1.2;letter-spacing:2px;direction:ltr}
+.cover-master{position:relative;font-size:10px;letter-spacing:1.7px;color:var(--cyan);direction:ltr;font-weight:800}
+.cover-line{width:55px;height:3px;background:var(--cyan);margin:14px 0}
+.cover h2{position:relative;font-size:22px;line-height:1.8;margin:0}
+.cover-sub{position:relative;font-size:10px;color:#82d5ff;direction:ltr}
+.cover-chip{position:relative;display:inline-block;margin-top:8px;border:1px solid #08dcff;color:#08dcff;border-radius:5px;padding:3px 7px;font-size:8px;direction:ltr}
+.cover-author{position:absolute;bottom:20px;right:19px;color:#e0efff;font-size:10px;line-height:1.7}
+.cover-author b{color:var(--cyan)}
+.book-caption{position:relative;color:var(--cyan);margin-top:23px;font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:20px}
+.stat{text-align:center;padding:13px 8px;background:#0b1730;border:1px solid var(--line);border-radius:13px}
+.stat strong{display:block;color:var(--cyan);font-size:23px}
+.stat span{color:var(--muted);font-size:11px}
+.section-head{text-align:center;margin-bottom:28px}
+.section-head p{margin-bottom:0;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:linear-gradient(145deg,#101f3b,#0a1428);border:1px solid var(--line);border-radius:15px;padding:19px;transition:.2s}
+.card:hover{transform:translateY(-3px);border-color:#087cff}
+.iconbox{width:42px;height:42px;display:grid;place-items:center;background:#087cff18;border:1px solid #087cff45;border-radius:11px;font-size:21px;margin-bottom:10px}
+.card h3{margin-bottom:6px}
+.card p{font-size:12px;margin-bottom:0}
+.language-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.language-card{background:#0c1930;border:1px solid #21446e;border-radius:16px;padding:20px}
+.language-card .lang-icon{font-size:25px}
+.language-card h3{font-size:18px}
+.lesson-count{display:inline-block;background:#087cff1b;color:var(--cyan);border:1px solid #087cff55;border-radius:7px;padding:3px 9px;font-size:11px;margin:3px 0 10px}
+.feature-list{list-style:none;padding:0;margin:10px 0 0}
+.feature-list li{padding:4px 0;color:#d6e5f8;font-size:12px}
+.feature-list li:before{content:"✓";color:var(--cyan);margin-left:7px;font-weight:900}
+.level-note{margin-top:17px;padding:14px;border:1px solid var(--line);background:#0b1730;border-radius:12px;color:#cbdcf1;font-size:12px}
+.price-box{
+ max-width:680px;margin:auto;padding:26px;text-align:center;
+ border:1px solid #08dcff80;border-radius:21px;
+ background:radial-gradient(ellipse at 50% 0%,#087cff27,transparent 65%),#0a152b
+}
+.big-price{font-size:48px;font-weight:900;color:var(--cyan);line-height:1.4}
+.big-price small{font-size:16px;color:white}
+.included{list-style:none;padding:0;margin:17px auto;max-width:400px;text-align:right}
+.included li{padding:4px 0;font-size:12px}
+.included li:before{content:"✓";color:var(--green);font-weight:900;margin-left:9px}
+.payment-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.payment-card{background:#0d1b34;border:1px solid var(--line);border-radius:15px;padding:20px}
+.payment-card p{font-size:12px;margin:5px 0}
+.payment-number{
+ direction:ltr;text-align:center;font-size:21px;font-weight:900;letter-spacing:.5px;
+ color:var(--cyan);background:#071124;border:1px dashed #087cff;border-radius:9px;padding:10px;margin:12px 0
+}
+.payment-actions{display:flex;gap:7px;flex-wrap:wrap}
+.hint{margin-top:16px;padding:13px;border-radius:11px;background:#10213b;border:1px solid #25456d;color:#c8d8ee;font-size:12px}
+.faq-list{max-width:760px;margin:auto;display:grid;gap:9px}
+details{background:#0c1930;border:1px solid var(--line);border-radius:11px;padding:13px 16px}
+summary{cursor:pointer;font-weight:800;font-size:12px}
+details p{font-size:12px;margin:8px 0 0}
+.social-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.social-card{
+ text-align:center;border:1px solid var(--line);background:#0c1930;
+ border-radius:14px;padding:17px 8px;transition:.2s
+}
+.social-card:hover{transform:translateY(-3px);border-color:var(--cyan)}
+.social-icon{display:block;font-size:28px;line-height:1.4;margin-bottom:4px}
+.instagram-icon{
+ color:#fff;background:linear-gradient(45deg,#ffd776,#ff7a45,#d62976,#962fbf,#4f5bd5);
+ width:39px;height:39px;display:grid;place-items:center;margin:0 auto 8px;
+ border-radius:12px;font-size:24px
+}
+.facebook-icon{
+ color:white;background:#1877f2;width:39px;height:39px;display:grid;
+ place-items:center;margin:0 auto 8px;border-radius:50%;font-size:27px;font-weight:900
+}
+.whatsapp-icon{
+ color:white;background:#20c878;width:39px;height:39px;display:grid;
+ place-items:center;margin:0 auto 8px;border-radius:50%;font-size:22px
+}
+.social-card strong{display:block;font-size:12px}
+.social-card small{color:var(--muted);font-size:10px}
+footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-size:11px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.chat-button{
+ position:fixed;bottom:17px;left:17px;z-index:100;width:53px;height:53px;
+ border-radius:50%;border:1px solid #5beaff;background:linear-gradient(145deg,#087cff,#084cbd);
+ color:white;font-size:24px;box-shadow:0 7px 28px #087cff70
+}
+.chat-box{
+ display:none;position:fixed;bottom:80px;left:17px;width:min(325px,calc(100vw - 34px));
+ z-index:100;background:#0b1730;border:1px solid #087cff;border-radius:16px;overflow:hidden;box-shadow:0 15px 45px #0009
+}
+.chat-box.open{display:block}
+.chat-head{padding:12px 14px;background:#102b50;font-weight:800}
+.chat-head small{display:block;color:#bdd5f5;font-weight:400;font-size:10px}
+.chat-messages{padding:12px;height:205px;overflow:auto;font-size:12px}
+.bot-msg,.user-msg{padding:8px 10px;border-radius:10px;margin:7px 0;max-width:95%}
+.bot-msg{background:#142745;color:#e5f2ff}
+.user-msg{background:#087cff;color:white;margin-right:auto}
+.chat-choices{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:0 10px 10px}
+.chat-choices button{background:#0d2240;border:1px solid #24517e;color:var(--cyan);padding:8px 5px;border-radius:8px;font-size:10px}
+.chat-footer{border-top:1px solid var(--line);padding:9px;font-size:10px;color:var(--muted)}
+.notice{font-size:11px;color:var(--muted);margin-top:10px}
+@media(max-width:800px){
+ .hero-grid{grid-template-columns:1fr;gap:8px}
+ .hero-content{text-align:center}
+ .hero-copy{margin-inline:auto}
+ .points,.hero-actions{justify-content:center}
+ .price-banner{margin:15px auto;justify-content:center}
+ .book-stage{min-height:370px}
+ .cards{grid-template-columns:repeat(2,1fr)}
+ .social-grid{grid-template-columns:repeat(2,1fr)}
+ .nav-links{gap:9px}
+}
+@media(max-width:560px){
+ section{padding:38px 0}
+ .nav{min-height:57px}
+ .logo{font-size:12px}
+ .nav-links{font-size:10px}
+ .nav-links a:not(.nav-cta){display:none}
+ .hero{padding-top:25px}
+ .book-stage{min-height:350px}
+ .book{transform:scale(.88) rotateY(-14deg)}
+ .book:hover{transform:scale(.88) rotateY(-5deg)}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .cards,.language-cards,.payment-grid{grid-template-columns:1fr}
+ .price-box{padding:20px 14px}
+ .big-price{font-size:41px}
+ .social-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media print{
+ header,.chat-button,.chat-box{display:none!important}
+ body{background:#070d1d!important}
+ section{break-inside:avoid;padding:28px 0}
+}
+</style>
+</head>
+
+<body>
+<header>
+ <div class="container nav">
+  <a class="logo" href="#home">DONIA <span>— MASTERING CODE</span></a>
+  <nav class="nav-links">
+   <a href="#features">مميزات المنصة</a>
+   <a href="#level-one">المستوى الأول</a>
+   <a href="#payment">الدفع</a>
+   <a href="#contact">تواصل</a>
+   <a class="btn primary small nav-cta" href="#subscribe">اشترك الآن</a>
+  </nav>
+ </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+ <div class="container">
+  <div class="hero-grid">
+   <div class="hero-content">
+    <span class="eyebrow">✦ YOUR CODING JOURNEY STARTS HERE</span>
+    <h1>من الصفر إلى عالم البرمجة مع <span class="gradient">DONIA — MASTERING CODE</span></h1>
+    <p class="hero-copy">
+     ابدأ تعلّم البرمجة خطوة بخطوة من خلال منصة تعليمية تجمع بين الشرح العربي،
+     والتطبيق العملي، والمذكرات، والاختبارات الصغيرة لمساعدتك على فهم ما تتعلمه.
+    </p>
+    <div class="points">
+     <span>✓ مناسب للمبتدئين</span>
+     <span>✓ شرح عربي</span>
+     <span>✓ تطبيق عملي</span>
+     <span>✓ محرر أكواد</span>
+    </div>
+    <div class="price-banner">
+     <span class="label">سعر الباقة التعليمية</span>
+     <strong>300 <small>جنيه مصري</small></strong>
+     <span class="detail">ابدأ رحلتك البرمجية الآن</span>
+    </div>
+    <div class="hero-actions">
+     <a href="#subscribe" class="btn primary">🚀 اشترك الآن</a>
+     <a href="#level-one" class="btn outline">اكتشف المستوى الأول</a>
+    </div>
+    <p class="notice">تأكيد الاشتراك يتم يدويًا بعد مراجعة إيصال الدفع.</p>
+   </div>
+
+   <div class="book-stage" aria-label="غلاف DONIA MASTERING CODE">
+    <div class="book-glow"></div>
+    <div class="book">
+     <div class="cover">
+      <div class="cover-code">&lt;/&gt;</div>
+      <div class="cover-donia">DONIA</div>
+      <div class="cover-master">MASTERING CODE</div>
+      <div class="cover-line"></div>
+      <h2>THE BEGINNER'S<br>JOURNEY</h2>
+      <div class="cover-sub">LEARN · BUILD · CREATE</div>
+      <div class="cover-chip">HTML · CSS · JAVASCRIPT</div>
+      <div class="cover-author">CREATED BY<br><b>DONIA HAROUN</b></div>
+     </div>
+    </div>
+    <p class="book-caption">✦ LEARN · BUILD · CREATE ✦</p>
+   </div>
+  </div>
+
+  <div class="stats">
+   <div class="stat"><strong>18</strong><span>درسًا في المستوى الأول</span></div>
+   <div class="stat"><strong>3</strong><span>لغات برمجية</span></div>
+   <div class="stat"><strong>6</strong><span>دروس لكل لغة</span></div>
+   <div class="stat"><strong>300 ج</strong><span>سعر الاشتراك</span></div>
+  </div>
+ </div>
+</section>
+
+<section id="features">
+ <div class="container">
+  <div class="section-head">
+   <h2>تعلّم بطريقة <span class="gradient">تجمع بين الشرح والتطبيق</span></h2>
+   <p>أدوات تعليمية تساعدك على فهم الدرس والتدرب عليه ومراجعة معلوماتك.</p>
+  </div>
+  <div class="cards">
+   <article class="card">
+    <div class="iconbox">🎬</div>
+    <h3>فيديو شرح خاص</h3>
+    <p>لكل لغة فيديو شرح مخصص للمستوى الأول، لمتابعة الأفكار الأساسية خطوة بخطوة.</p>
+   </article>
+   <article class="card">
+    <div class="iconbox">📘</div>
+    <h3>مذكرة خاصة</h3>
+    <p>مذكرة مرتبطة بمحتوى كل لغة تساعدك على المذاكرة ومراجعة المفاهيم المهمة.</p>
+   </article>
+   <article class="card">
+    <div class="iconbox">💻</div>
+    <h3>محرر أكواد تفاعلي</h3>
+    <p>اكتب الأكواد وجربها بنفسك داخل المنصة، بدل الاكتفاء بمشاهدة الشرح.</p>
+   </article>
+   <article class="card">
+    <div class="iconbox">🧠</div>
+    <h3>اختبار صغير لكل لغة</h3>
+    <p>اختبر فهمك للمفاهيم الأساسية وراجع إجاباتك بعد الانتهاء من التعلّم.</p>
+   </article>
+   <article class="card">
+    <div class="iconbox">📝</div>
+    <h3>دروس مرتبة</h3>
+    <p>18 درسًا موزعة على ثلاث لغات، بواقع ستة دروس لكل لغة في المستوى الأول.</p>
+   </article>
+   <article class="card">
+    <div class="iconbox">🌱</div>
+    <h3>ابدأ من الصفر</h3>
+    <p>تعرّف على أساسيات بناء صفحات الويب وتنسيقها وإضافة التفاعل إليها.</p>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section id="level-one">
+ <div class="container">
+  <div class="section-head">
+   <span class="eyebrow">LEVEL 01</span>
+   <h2>تفاصيل <span class="gradient">المستوى الأول</span></h2>
+   <p>18 درسًا: ستة دروس في كل لغة، مع أدوات التعلّم الخاصة بكل لغة.</p>
+  </div>
+  <div class="language-cards">
+   <article class="language-card">
+    <div class="lang-icon">🌐</div>
+    <h3>HTML</h3>
+    <span class="lesson-count">6 دروس</span>
+    <p>تعلّم البنية الأساسية لصفحات الويب وكيفية تنظيم المحتوى باستخدام HTML.</p>
+    <ul class="feature-list">
+     <li>فيديو شرح خاص بـ HTML</li>
+     <li>مذكرة HTML للمستوى الأول</li>
+     <li>محرر أكواد للتجربة</li>
+     <li>اختبار صغير للمراجعة</li>
+    </ul>
+   </article>
+   <article class="language-card">
+    <div class="lang-icon">🎨</div>
+    <h3>CSS</h3>
+    <span class="lesson-count">6 دروس</span>
+    <p>تعرّف على تنسيق صفحات الويب وتغيير الألوان والخطوط وترتيب العناصر.</p>
+    <ul class="feature-list">
+     <li>فيديو شرح خاص بـ CSS</li>
+     <li>مذكرة CSS للمستوى الأول</li>
+     <li>محرر أكواد للتجربة</li>
+     <li>اختبار صغير للمراجعة</li>
+    </ul>
+   </article>
+   <article class="language-card">
+    <div class="lang-icon">⚡</div>
+    <h3>JavaScript</h3>
+    <span class="lesson-count">6 دروس</span>
+    <p>ابدأ فهم البرمجة التفاعلية وأساسيات كتابة أوامر JavaScript.</p>
+    <ul class="feature-list">
+     <li>فيديو شرح خاص بـ JavaScript</li>
+     <li>مذكرة JavaScript للمستوى الأول</li>
+     <li>محرر أكواد للتجربة</li>
+     <li>اختبار صغير للمراجعة</li>
+    </ul>
+   </article>
+  </div>
+  
+<div class="level-note">
+  <strong style="color:var(--cyan)">🎓 اشتراكك يشمل المستويين الأول والثاني!</strong>
+  <p style="margin:6px 0 0;color:#cbdcf1">
+    احصل على باقة DONIA — MASTERING CODE الكاملة بسعر 300 جنيه مصري،
+    وابدأ رحلتك في تعلّم البرمجة والتطبيق العملي خطوة بخطوة.
+  </p>
+</div>
+
+ </div>
+</section>
+
+<section id="subscribe">
+ <div class="container">
+  <div class="price-box">
+   <span class="eyebrow">START LEARNING TODAY</span>
+   <h2>ابدأ رحلتك مع <span class="gradient">MASTERING CODE</span></h2>
+   <div class="big-price">300 <small>جنيه مصري</small></div>
+   <p>سعر الاشتراك في الباقة التعليمية المعلنة.</p>
+   <ul class="included">
+    <li>18 درسًا في المستوى الأول</li>
+    <li>6 دروس HTML + 6 دروس CSS + 6 دروس JavaScript</li>
+    <li>فيديو شرح ومذكرة لكل لغة في المستوى</li>
+    <li>محرر أكواد تفاعلي لكل لغة</li>
+    <li>اختبار صغير لكل لغة</li>
+  <li>+ المستوي التاني كامل بنفس تفاصيل المستوي الاول وعشان توصل للمستوي التاني لازم تعدي امتحان المستوى الاول </li>
+   </ul>
+
+   <a class="btn primary" href="#payment">اختار طريقة الدفع ←</a>
+   <p class="notice">أرسل إيصال التحويل لتأكيد الاشتراك.</p>
+  </div>
+ </div>
+</section>
+
+<section id="payment">
+ <div class="container">
+  <div class="section-head">
+   <h2>طرق <span class="gradient">الدفع والاشتراك</span></h2>
+   <p>قيمة الاشتراك 300 جنيه مصري. راجع بيانات المستلم قبل تأكيد التحويل.</p>
+  </div>
+  <div class="payment-grid">
+   <article class="payment-card">
+    <div class="iconbox">📱</div>
+    <h3>اتصالات كاش</h3>
+    <p>رقم محفظة الدفع:</p>
+    <div class="payment-number">01150770678</div>
+    <div class="payment-actions">
+     <button class="btn outline small" onclick="copyText('01150770678')">نسخ الرقم</button>
+     <a class="btn whatsapp-btn small" href="https://wa.me/201141654852?text=مرحباً،%20أرغب%20في%20الاشتراك%20في%20DONIA%20MASTERING%20CODE" target="_blank" rel="noopener">تواصل للاشتراك</a>
+    </div>
+   </article>
+   <article class="payment-card">
+    <div class="iconbox">💳</div>
+    <h3>InstaPay</h3>
+    <p>رقم الحساب:</p>
+    <div class="payment-number">01141654258</div>
+    <p>عنوان InstaPay:</p>
+    <div class="payment-number" style="font-size:15px">doniaharoun@instapay</div>
+    <div class="payment-actions">
+     <button class="btn outline small" onclick="copyText('01141654258')">نسخ الرقم</button>
+     <button class="btn outline small" onclick="copyText('doniaharoun@instapay')">نسخ العنوان</button>
+     <a class="btn primary small" href="https://ipn.eg/S/doniaharoun/instapay/57WUM4" target="_blank" rel="noopener">رابط الدفع</a>
+    </div>
+   </article>
+  </div>
+  <div class="hint">
+   <strong>خطوات الاشتراك:</strong><br>
+   1. حوّل قيمة الاشتراك.<br>
+   2. احتفظ بإيصال الدفع.<br>
+   3. أرسل الإيصال واسمك عبر واتساب.<br>
+   4. انتظر تأكيد الدفع وتعليمات الوصول للمنصة.
+  </div>
+  <div style="text-align:center;margin-top:18px">
+   <a class="btn whatsapp-btn" href="https://wa.me/201141654852?text=مرحباً،%20أرغب%20في%20الاشتراك%20في%20DONIA%20MASTERING%20CODE%20بسعر%20300%20جنيه" target="_blank" rel="noopener">💬 إرسال رسالة واتساب</a>
+  </div>
+ </div>
+</section>
+
+<section id="faq">
+ <div class="container">
+  <div class="section-head">
+   <h2>الأسئلة <span class="gradient">الشائعة</span></h2>
+   <p>كل ما تحتاج معرفته قبل الاشتراك.</p>
+  </div>
+  <div class="faq-list">
+   <details>
+    <summary>كم عدد دروس المستوى الأول؟</summary>
+    <p>18 درسًا: ستة دروس HTML، وستة CSS، وستة JavaScript.</p>
+   </details>
+   <details>
+    <summary>هل لكل لغة فيديو ومذكرة خاصة؟</summary>
+    <p>نعم، المستوى الأول يتضمن فيديو شرح ومذكرة خاصة لكل لغة من اللغات الثلاث.</p>
+   </details>
+   <details>
+    <summary>هل أقدر أجرب الأكواد بنفسي؟</summary>
+    <p>تتضمن المنصة محرر أكواد تفاعليًا للتطبيق، مع اختبار صغير لكل لغة.</p>
+   </details>
+   <details>
+    <summary>هل الكورس مناسب للمبتدئين؟</summary>
+    <p>المحتوى موجه للبدء من أساسيات البرمجة وتعلّم لغات الويب خطوة بخطوة.</p>
+   </details>
+   <details>
+    <summary>ما سعر الاشتراك؟</summary>
+    <p>السعر المعروض على هذه الصفحة هو 300 جنيه مصري.</p>
+   </details>
+   <details>
+    <summary>كيف أحصل على المنصة بعد الدفع؟</summary>
+    <p>أرسل إيصال التحويل عبر واتساب وانتظر تأكيد الدفع وتعليمات الوصول.</p>
+   </details>
+  </div>
+ </div>
+</section>
+
+<section id="contact">
+ <div class="container">
+  <div class="section-head">
+   <h2>تابعنا على <span class="gradient">السوشيال ميديا</span></h2>
+   <p>تابع DONIA — MASTERING CODE أو تواصل معنا للاستفسار.</p>
+  </div>
+  <div class="social-grid">
+   <a class="social-card" href="https://www.instagram.com/doniawebsite?exln=eWg5aXZ0MHFqcXV1" target="_blank" rel="noopener">
+    <span class="instagram-icon">◎</span>
+    <strong>Instagram</strong><small>@doniawebsite</small>
+   </a>
+   <a class="social-card" href="https://www.facebook.com/share/1G5RdeXWzK/" target="_blank" rel="noopener">
+    <span class="facebook-icon">f</span>
+    <strong>Facebook</strong><small>تابع الصفحة</small>
+   </a>
+   <a class="social-card" href="https://wa.me/201141654852" target="_blank" rel="noopener">
+    <span class="whatsapp-icon">◔</span>
+    <strong>WhatsApp</strong><small>01141654852</small>
+   </a>
+   <a class="social-card" href="https://ipn.eg/S/doniaharoun/instapay/57WUM4" target="_blank" rel="noopener">
+    <span class="social-icon">💳</span>
+    <strong>InstaPay</strong><small>رابط الدفع</small>
+   </a>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="container footer-inner">
+  <a class="logo" href="#home">DONIA <span>— MASTERING CODE</span></a>
+  <span>Created by Donia Haroun © <span id="year"></span></span>
+  <a href="#home">العودة للأعلى ↑</a>
+ </div>
+</footer>
+
+<button class="chat-button" id="chatToggle" aria-label="افتح الشات بوت" title="اسأل عن الكورس">✦</button>
+<div class="chat-box" id="chatBox">
+ <div class="chat-head">مساعد DONIA — MASTERING CODE
+  <small>اختار سؤالك من الخيارات التالية.</small>
+ </div>
+ <div class="chat-messages" id="chatMessages">
+  <div class="bot-msg">أهلًا بيك! 👋 أقدر أساعدك تعرف تفاصيل المستوى الأول والاشتراك.</div>
+ </div>
+ <div class="chat-choices">
+  <button data-q="price">السعر كام؟</button>
+  <button data-q="lessons">عدد الدروس</button>
+  <button data-q="features">مميزات المنصة</button>
+  <button data-q="payment">طرق الدفع</button>
+ </div>
+ <div class="chat-footer">للتواصل المباشر:
+  <a style="color:var(--cyan)" href="https://wa.me/201141654852" target="_blank" rel="noopener">واتساب</a>
+ </div>
+</div>
+
+<script>
+"use strict";
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function copyText(value){
+ if(navigator.clipboard && window.isSecureContext){
+  navigator.clipboard.writeText(value).then(function(){
+   alert("تم نسخ البيانات: " + value);
+  }).catch(function(){
+   window.prompt("انسخ البيانات التالية:",value);
+  });
+ }else{
+  window.prompt("انسخ البيانات التالية:",value);
+ }
+}
+
+const toggle = document.getElementById("chatToggle");
+const box = document.getElementById("chatBox");
+const messages = document.getElementById("chatMessages");
+
+toggle.addEventListener("click",function(){
+ box.classList.toggle("open");
+});
+
+const replies={
+ price:"سعر الاشتراك المعروض هو 300 جنيه مصري.",
+ lessons:"المستوى الأول فيه 18 درسًا: 6 HTML و6 CSS و6 JavaScript.",
+ features:"كل لغة لها فيديو شرح خاص ومذكرة خاصة ومحرر أكواد تفاعلي واختبار صغير.",
+ payment:"تقدر تستخدم اتصالات كاش على 01150770678 أو InstaPay على 01141654258. تأكد من بيانات المستلم قبل التحويل."
+};
+const labels={
+ price:"السعر كام؟",
+ lessons:"عدد الدروس",
+ features:"مميزات المنصة",
+ payment:"طرق الدفع"
+};
+
+document.querySelectorAll("[data-q]").forEach(function(button){
+ button.addEventListener("click",function(){
+  const key=button.getAttribute("data-q");
+  const user=document.createElement("div");
+  user.className="user-msg";
+  user.textContent=labels[key];
+  messages.appendChild(user);
+
+  const answer=document.createElement("div");
+  answer.className="bot-msg";
+  answer.textContent=replies[key];
+  messages.appendChild(answer);
+  messages.scrollTop=messages.scrollHeight;
+ });
+});
+</script>
+</body>
+</html>
